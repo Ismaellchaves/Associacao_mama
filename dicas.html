@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicas de Prevenção - MAMA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { 
+            margin:0; 
+            padding:0; 
+            box-sizing:border-box; 
+            list-style:none; 
+        }
+
+        body {
+            font-family:'Noto Sans',sans-serif;
+            margin:0;
+            padding:0;
+            background:#fff;
+            color:#333;
+            overflow-x: hidden;
+            background-color: #FFF5F9;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 98;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Header */
+        header {
+            background:linear-gradient(90deg,#ff69b4,#ffb6c1);
+            padding:10px 20px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+            position:relative;
+            z-index: 100;
+        }
+
+        header .logo { 
+            display:flex; 
+            align-items:center; 
+        }
+
+        header .logo img { 
+            max-width:12vh; 
+        }
+
+        header .logo h1 { 
+            margin-left:10px; 
+            color:#fff; 
+            font-size:38px; 
+        }
+
+        /* Menu Desktop */
+        nav ul { 
+            display:flex; 
+            gap:20px; 
+            flex-wrap:wrap; 
+        }
+
+        nav ul li a { 
+            color:#fff; 
+            text-decoration:none; 
+            font-size:18px; 
+            padding:8px 16px; 
+            border-radius:10px; 
+            transition:0.3s; 
+            display: block;
+        }
+
+nav ul li a.active { 
+    background-color: #fff; 
+    color: #FF69B4;
+    border-radius: 12px;       /* bordas arredondadas */
+    padding: 8px 16px;         /* tamanho interno */
+    display: inline-block;      /* necessário para border-radius */
+    text-align: center;         /* centraliza o texto */
+    text-decoration: none;      /* remove sublinhado */
+    transition: background 0.3s, color 0.3s; /* animação suave */
+}
+
+nav ul li a:hover { 
+    background-color: rgba(255,255,255,0.2); 
+    border-radius: 12px;       /* bordas arredondadas iguais */
+    color: #FF69B4;            /* mantém a cor do texto */
+    transition: background 0.3s, color 0.3s; /* animação suave */
+}
+
+
+        /* Hamburger */
+        .hamburger { 
+            display:none; 
+            font-size:2rem; 
+            color:#fff; 
+            cursor:pointer; 
+            z-index: 101;
+        }
+
+        /* Main Content */
+        .container {
+            max-width:1200px;
+            margin:0 auto;
+            padding:20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #ff69b4, #ffb6c1);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path fill="rgba(255,255,255,0.1)" d="M10,6 C10,6 8,4 6,4 C4,4 2,6 2,8 C2,10 4,12 6,14 C8,16 10,18 10,20 C10,18 12,16 14,14 C16,12 18,10 18,8 C18,6 16,4 14,4 C12,4 10,6 10,6 Z"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* Tips Grid */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .tip-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #ff69b4;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tip-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff69b4, #ffb6c1);
+        }
+
+        .tip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .tip-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .tip-card h3 {
+            color: #ff69b4;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tip-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .tip-card ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .tip-card li {
+            color: #666;
+            margin-bottom: 8px;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .tip-card li::before {
+            content: '💖';
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        /* Emergency Section */
+        .emergency-section {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="warning" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><path fill="rgba(255,255,255,0.1)" d="M12.5,0 L25,25 L0,25 Z M12.5,10 L12.5,15 M12.5,18 L12.5,20"/></pattern></defs><rect width="100" height="100" fill="url(%23warning)"/></svg>');
+        }
+
+        .emergency-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .emergency-section p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .emergency-contact {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .emergency-contact h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: white;
+            color: #ff6b6b;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stats-section h2 {
+            color: #ff69b4;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff69b4;
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        footer {
+            background:linear-gradient(90deg,#ff69b4,#ffb6c1);
+            color:#fff;
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:space-around;
+            align-items:center;
+            padding:30px 20px;
+            gap:30px;
+            text-align:center;
+            margin-top: 50px;
+        }
+
+        footer .social-icons {
+            display:flex;
+            gap:15px;
+        }
+
+        footer .social-icons img {
+            width:8vh;
+            transition: transform 0.3s ease;
+        }
+
+        footer .social-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        footer .about-us p {
+            font-size:16px;
+            margin-bottom: 8px;
+        }
+
+        footer .logo-footer img {
+            max-width:15vh;
+        }
+
+        .hidden {
+            display:none;
+        }
+
+        /* Menu Lateral Mobile */
+        @media(max-width:768px){
+            body.menu-open {
+                overflow: hidden;
+            }
+            
+            header {
+                flex-direction:row;
+                justify-content:space-between;
+            }
+            
+            /* Menu lateral */
+            nav {
+                position: fixed;
+                top: 0;
+                right: -300px;
+                width: 300px;
+                height: 100vh;
+                background-color: #ff69b4;
+                padding: 80px 20px 20px;
+                transition: right 0.3s ease;
+                z-index: 99;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            nav ul li {
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+            
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 10px;
+                font-size: 18px;
+                border-radius: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .tips-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .tip-card {
+                padding: 25px 20px;
+            }
+            
+            .emergency-section {
+                padding: 30px 20px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            footer {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+
+        @media(max-width:480px){
+            header .logo h1 {
+                font-size:24px;
+            }
+            
+            .hero {
+                padding: 40px 20px;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .tip-card {
+                padding: 20px 15px;
+            }
+            
+            .emergency-section h2 {
+                font-size: 1.8rem;
+            }
+            
+            .stats-section {
+                padding: 30px 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+        
+/* Estilos para o Footer Atualizado */
+footer {
+    background: linear-gradient(90deg, #ff69b4, #ffb6c1);
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px 20px;
+    gap: 30px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.social-icons a {
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+}
+
+.social-icons img {
+    width: 8vh;
+    transition: transform 0.3s ease;
+}
+
+.about-us p {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.dev-link {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+}
+
+.dev-website {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-size: 14px;
+}
+
+.dev-website:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.logo-footer img {
+    max-width: 15vh;
+}
+
+.campaign-text {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .social-icons {
+        gap: 15px;
+    }
+    
+    .dev-website {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Overlay para menu mobile -->
+    <div class="overlay" id="overlay"></div>
+
+    <header>
+        <div class="logo">
+            <img src="./assets/mama0.png" alt="MAMA">
+            <h1>MAMA</h1>
+        </div>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <nav id="nav">
+            <ul id="navMenu">
+                <li><a href="index.html">MAMA</a></li>
+                <li><a href="concienteze.html">Conscientização / Doe</a></li>
+                <li><a href="#" class="active">Dicas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Dicas de Prevenção</h2>
+            <p>Cuide da sua saúde com essas informações importantes para a prevenção do câncer de mama</p>
+        </section>
+
+        <!-- Dicas de Prevenção -->
+        <section class="tips-grid">
+            <div class="tip-card">
+                <div class="tip-icon">🔍</div>
+                <h3>Autoexame Mensal</h3>
+                <p>O autoexame deve ser realizado mensalmente, preferencialmente 7 dias após o início da menstruação.</p>
+                <ul>
+                    <li>Faça em frente ao espelho observando alterações</li>
+                    <li>Palpe as mamas durante o banho</li>
+                    <li>Deite-se e palpe toda a mama</li>
+                    <li>Observe a saída de líquido dos mamilos</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon">🏥</div>
+                <h3>Exames Regulares</h3>
+                <p>Mantenha em dia seus exames de rotina conforme recomendação médica:</p>
+                <ul>
+                    <li>Mamografia anual a partir dos 40 anos</li>
+                    <li>Ultrassom para mamas densas</li>
+                    <li>Consulta anual com ginecologista</li>
+                    <li>Ressonância para casos de alto risco</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon">🥗</div>
+                <h3>Alimentação Saudável</h3>
+                <p>Uma alimentação balanceada pode reduzir em até 30% o risco de câncer de mama:</p>
+                <ul>
+                    <li>Consuma frutas e vegetais frescos</li>
+                    <li>Prefira grãos integrais</li>
+                    <li>Evite alimentos ultraprocessados</li>
+                    <li>Reduza o consumo de carne vermelha</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon">💪</div>
+                <h3>Atividade Física</h3>
+                <p>Pratique exercícios regularmente para manter a saúde em dia:</p>
+                <ul>
+                    <li>30 minutos de exercício, 5 vezes por semana</li>
+                    <li>Caminhadas, natação ou dança</li>
+                    <li>Evite o sedentarismo</li>
+                    <li>Mantenha o peso adequado</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon">🚭</div>
+                <h3>Hábitos Saudáveis</h3>
+                <p>Evite comportamentos que aumentam o risco de câncer:</p>
+                <ul>
+                    <li>Não fume e evite o fumo passivo</li>
+                    <li>Limite o consumo de álcool</li>
+                    <li>Amamente se possível</li>
+                    <li>Controle o estresse</li>
+                </ul>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon">🧬</div>
+                <h3>Histórico Familiar</h3>
+                <p>Conheça seu histórico familiar e tome os cuidados necessários:</p>
+                <ul>
+                    <li>Converse com parentes sobre saúde</li>
+                    <li>Procure aconselhamento genético se necessário</li>
+                    <li>Inicie acompanhamento mais cedo se houver casos na família</li>
+                    <li>Compartilhe informações com seu médico</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Estatísticas -->
+        <section class="stats-section">
+            <h2>Importância da Prevenção</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-text">Taxa de cura quando descoberto precocemente</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1 em 12</div>
+                    <div class="stat-text">Mulheres desenvolverão câncer de mama no Brasil</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30%</div>
+                    <div class="stat-text">Redução de risco com hábitos saudáveis</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">66 mil</div>
+                    <div class="stat-text">Novos casos estimados para 2024 no Brasil</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergência -->
+        <section class="emergency-section">
+            <div class="emergency-content">
+                <h2>⚠️ Atenção Imediata</h2>
+                <p>Procure um médico imediatamente se notar qualquer um destes sinais:</p>
+                
+                <div class="emergency-contact">
+                    <h3>Sinais de Alerta</h3>
+                    <ul style="text-align: left; color: white;">
+                        <li>Nódulo ou caroço na mama ou axila</li>
+                        <li>Alteração no formato ou tamanho da mama</li>
+                        <li>Pele da mama avermelhada ou com aspecto de casca de laranja</li>
+                        <li>Saída de líquido pelo mamilo</li>
+                        <li>Mamilo invertido ou com ferida</li>
+                    </ul>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">📞 Disque Saúde: 136</div>
+                        <div class="contact-item">🏥 SAMU: 192</div>
+                        <div class="contact-item">💖 INCA: 0800 773 1666</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+<footer>
+    <section class="social-icons">
+        <!-- Instagram da Campanha Outubro Rosa -->
+        <a href="https://www.instagram.com/associacaomama" target="_blank" title="Instagram Oficial Outubro Rosa">
+            <img src="./assets/insta.png" alt="Instagram Outubro Rosa">
+        </a>
+        
+        <!-- Instagram dos Desenvolvedores (substitua pelo link real) -->
+        <a href="https://www.instagram.com/isnex.01" target="_blank" title="Instagram dos Desenvolvedores">
+            <img src="./assets/insta.png" alt="Instagram Desenvolvedores">
+        </a>
+    </section>
+    
+    <section class="about-us">
+        <p class="campaign-text">Juntas na prevenção! 💖</p>
+        <p class="campaign-text">Visite o Site do nosso desenvolvedor logo abaixo⬇️</p>
+        <!-- Link para o site dos desenvolvedores -->
+        <div class="dev-link">
+            <a href="https://isnex.netlify.app" target="_blank" class="dev-website">
+                💻 ISNEX
+            </a>
+        </div>
+    </section>
+    
+    <section class="logo-footer">
+        <img src="./assets/fita.png" alt="laço do Outubro Rosa">
+    </section>
+</footer>
+
+
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+
+    <script>
+        // Menu Mobile
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        const overlay = document.getElementById('overlay');
+        const body = document.body;
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            body.classList.toggle('menu-open');
+            
+            if (nav.classList.contains('active')) {
+                hamburger.innerHTML = '✕';
+            } else {
+                hamburger.innerHTML = '&#9776;';
+            }
+        });
+
+        overlay.addEventListener('click', () => {
+            nav.classList.remove('active');
+            overlay.classList.remove('active');
+            body.classList.remove('menu-open');
+            hamburger.innerHTML = '&#9776;';
+        });
+
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    nav.classList.remove('active');
+                    overlay.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    hamburger.innerHTML = '&#9776;';
+                }
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                nav.classList.remove('active');
+                overlay.classList.remove('active');
+                body.classList.remove('menu-open');
+                hamburger.innerHTML = '&#9776;';
+            }
+        });
+
+        // Efeito de digitação no hero
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Página de dicas carregada com sucesso!');
+            
+            // Adiciona animação de entrada nos cards
+            const cards = document.querySelectorAll('.tip-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -135,7 +135,7 @@ function getSelectedFoodItems(){ return Array.from(document.querySelectorAll('#f
 function getSelectedHairTypes(){ return Array.from(document.querySelectorAll('#hairGrid .product.selected')).map(p=>p.querySelector('h3').textContent); }
 
 function sendToWhatsApp(message){ 
-    const whatsappNumber="5588992828512"; 
+    const whatsappNumber="558898706820"; 
     window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`, "_blank"); 
 }
 

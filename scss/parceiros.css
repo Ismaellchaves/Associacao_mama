@@ -1,4 +1,4 @@
-* { 
+    * { 
         margin:0; 
         padding:0; 
         box-sizing:border-box; 
@@ -183,7 +183,7 @@
     }
     .popup .box header{display:flex;justify-content:space-between;align-items:center;gap:16px;background:none;padding:0;box-shadow:none;position:static}
     .popup .box header h3{margin:0;color:var(--primary-color)}
-    .popup .maparea{width:100%;height:420px;border-radius:10px;margin:12px 0;overflow:hidden}
+    .popup .map-container{width:100%;height:420px;border-radius:10px;margin:12px 0;overflow:hidden}
     .popup .box .actions{
       display:flex;
       gap:10px;
@@ -381,7 +381,7 @@
       }
       
       .popup .box{padding:14px}
-      .popup .maparea{height:300px}
+      .popup .map-container{height:300px}
       
       /* Menu lateral */
       .hamburger {
@@ -431,7 +431,7 @@
       .header-left h1{font-size:20px}
       .salao-lista{grid-template-columns:1fr}
       .popup .box{padding:12px}
-      .popup .maparea{height:260px}
+      .popup .map-container{height:260px}
       .animated-button{padding:15px 30px}
       .animated-button h1{font-size:18px}
       #popupBusca .box{padding:20px}

@@ -219,35 +219,41 @@
       });
     }
 
+    // Função para inicializar o mapa (chamada pelo callback da API)
+    function initMap() {
+      // O mapa será inicializado quando abrir o popup
+      console.log('Google Maps API carregada');
+    }
+
+    // Função para criar ícone personalizado
+function criarIconePersonalizado() {
+  return {
+    url: "./assets/locmama.png", // ou URL completa
+    scaledSize: new google.maps.Size(40, 40),
+    anchor: new google.maps.Point(20, 40)
+  };
+}
     // Função para abrir popup do mapa
     function abrirPopup(salao) {
       salaoAtual = salao;
       document.getElementById("popupNome").textContent = salao.nome;
       const instaLink = document.getElementById("popupInsta");
       const mapsLink = document.getElementById("popupMaps");
-
+      
       if (salao.instagram) {
         instaLink.href = salao.instagram;
         instaLink.style.display = 'inline-block';
       } else {
         instaLink.style.display = 'none';
       }
-<<<<<<< HEAD
       
       // Usar o link do Google Maps diretamente
       mapsLink.href = salao.mapsUrl;
       
-=======
-
-      // Link para Google Maps
-      const mapsUrl = `https://www.google.com/maps?q=${salao.lat},${salao.lng}&z=17`;
-      mapsLink.href = mapsUrl;
-
->>>>>>> a2e8010ee3a20d951269695425f827a1ffa01188
       document.getElementById("popup").style.display = "flex";
 
       const local = { lat: salao.lat, lng: salao.lng };
-
+      
       // Inicializar mapa
       mapa = new google.maps.Map(document.getElementById("mapa"), {
         zoom: 17,
@@ -257,41 +263,60 @@
             featureType: "poi",
             elementType: "labels",
             stylers: [{ visibility: "off" }]
+          },
+          {
+            featureType: "transit",
+            elementType: "labels",
+            stylers: [{ visibility: "off" }]
           }
-        ]
+        ],
+        mapTypeControl: false,
+        streetViewControl: false,
+        fullscreenControl: true,
+        zoomControl: true
       });
-
+      
       // Adicionar marcador personalizado
       marcador = new google.maps.Marker({
         position: local,
         map: mapa,
         title: salao.nome,
-        icon: {
-            url: "assets/locmama.png",
-          scaledSize: new google.maps.Size(45, 45),
-          anchor: new google.maps.Point(22.5, 45)
-        }
+        icon: criarIconePersonalizado(),
+        animation: google.maps.Animation.DROP
       });
 
       // InfoWindow com informações do salão
       const infoWindow = new google.maps.InfoWindow({
         content: `
-          <div style="padding: 10px;">
-            <h3 style="margin: 0 0 5px 0; color: #FF69B4;">${salao.nome}</h3>
-            <p style="margin: 0; font-size: 14px;">${salao.endereco}</p>
-            <a href="${salao.mapsUrl}" target="_blank" style="color: #4285F4; text-decoration: none; font-size: 12px; margin-top: 5px; display: block;">Abrir no Google Maps</a>
+          <div style="padding: 10px; max-width: 250px;">
+            <h3 style="margin: 0 0 5px 0; color: #FF69B4; font-size: 16px;">${salao.nome}</h3>
+            <p style="margin: 0; font-size: 14px; color: #666;">${salao.endereco}</p>
+            <div style="margin-top: 8px;">
+              ${salao.instagram ? `<a href="${salao.instagram}" target="_blank" style="color: #E1306C; text-decoration: none; font-size: 12px; margin-right: 10px;">📷 Instagram</a>` : ''}
+              <a href="${salao.mapsUrl}" target="_blank" style="color: #4285F4; text-decoration: none; font-size: 12px;">🗺️ Abrir no Maps</a>
+            </div>
           </div>
         `
       });
 
+      // Abrir infoWindow automaticamente
+      infoWindow.open(mapa, marcador);
+
+      // Também abrir ao clicar no marcador
       marcador.addListener('click', () => {
         infoWindow.open(mapa, marcador);
       });
+
+      // Centralizar o mapa no marcador com um pequeno offset para melhor visualização
+      mapa.panTo(local);
     }
 
     // Função para fechar popup do mapa
     function fecharPopup() {
       document.getElementById("popup").style.display = "none";
+      if (marcador) {
+        marcador.setMap(null);
+      }
     }
 
     // Função para abrir popup de busca
@@ -313,16 +338,16 @@
         tab.classList.remove('active');
       });
       document.querySelector(`.search-tab[onclick="mudarAba('${aba}')"]`).classList.add('active');
-
+      
       // Atualizar conteúdo
       document.querySelectorAll('.search-content').forEach(content => {
         content.classList.remove('active');
       });
       document.getElementById(`${aba}-content`).classList.add('active');
-
+      
       // Limpar sugestões
       document.getElementById("suggestions").style.display = "none";
-
+      
       // Focar no campo correto
       if (aba === 'cep') {
         document.getElementById("cep").focus();
@@ -344,132 +369,78 @@
         return;
       }
 
-<<<<<<< HEAD
       try {
-        // Primeiro, buscar as coordenadas do CEP usando geocoding
-        const geocoder = new google.maps.Geocoder();
+        // Usar a API de geocoding do Google Maps
+        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${cep},Brasil&key=AIzaSyAip-QesZTgTNaIZ21zKK4cv9GspTQA6p0`);
+        const data = await response.json();
         
-        geocoder.geocode({ 'address': `CEP ${cep}, Brasil` }, function(results, status) {
-          if (status === 'OK' && results[0]) {
-            const userLocation = results[0].geometry.location;
-            const userLat = userLocation.lat();
-            const userLng = userLocation.lng();
-=======
-  try {
-    // Primeiro, buscar as coordenadas do CEP usando geocoding
-    const geocoder = new google.maps.Geocoder();
+        if (data.status === 'OK' && data.results[0]) {
+          const location = data.results[0].geometry.location;
+          const userLat = location.lat;
+          const userLng = location.lng;
 
-    geocoder.geocode({ 'address': `CEP ${cep}, Brasil` }, function(results, status) {
-      if (status === 'OK' && results[0]) {
-        const userLocation = results[0].geometry.location;
-        const userLat = userLocation.lat();
-        const userLng = userLocation.lng();
->>>>>>> a2e8010ee3a20d951269695425f827a1ffa01188
+          // Fechar popup de busca
+          document.getElementById("popupBusca").style.display = "none";
 
-            // Fechar popup de busca
-            document.getElementById("popupBusca").style.display = "none";
+          // Calcular distância para cada salão e encontrar o mais próximo
+          let maisProx = null;
+          let menorDist = Infinity;
 
-            // Calcular distância para cada salão e encontrar o mais próximo
-            let maisProx = null;
-            let menorDist = Infinity;
+          saloes.forEach(s => {
+            // Fórmula de Haversine para calcular distância em linha reta
+            const R = 6371; // Raio da Terra em km
+            const dLat = (s.lat - userLat) * Math.PI / 180;
+            const dLng = (s.lng - userLng) * Math.PI / 180;
+            const a = 
+              Math.sin(dLat/2) * Math.sin(dLat/2) +
+              Math.cos(userLat * Math.PI / 180) * Math.cos(s.lat * Math.PI / 180) * 
+              Math.sin(dLng/2) * Math.sin(dLng/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            const distancia = R * c; // Distância em km
 
-            saloes.forEach(s => {
-              // Fórmula de Haversine para calcular distância em linha reta
-              const R = 6371; // Raio da Terra em km
-              const dLat = (s.lat - userLat) * Math.PI / 180;
-              const dLng = (s.lng - userLng) * Math.PI / 180;
-              const a = 
-                Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.cos(userLat * Math.PI / 180) * Math.cos(s.lat * Math.PI / 180) * 
-                Math.sin(dLng/2) * Math.sin(dLng/2);
-              const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-              const distancia = R * c; // Distância em km
-
-              if (distancia < menorDist) {
-                menorDist = distancia;
-                maisProx = s;
-              }
-            });
-
-            if (maisProx) {
-              // Mostrar popup informando o salão encontrado
-              document.getElementById("salaoEncontradoNome").textContent = 
-                `Salão mais próximo encontrado: ${maisProx.nome}\nDistância aproximada: ${menorDist.toFixed(2)} km`;
-              document.getElementById("popupSalaoEncontrado").style.display = "flex";
-              
-              // Piscar em verde o salão encontrado (5 vezes)
-              const el = document.getElementById(maisProx.id);
-              el.classList.add("piscando-verde");
-              
-              // Scroll para o elemento
-              el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-              
-              // Remover animação após 2.5 segundos (5 piscadas)
-              setTimeout(() => {
-                el.classList.remove("piscando-verde");
-              }, 2500);
-            } else {
-              alert("Nenhum salão encontrado próximo a esta localização.");
+            if (distancia < menorDist) {
+              menorDist = distancia;
+              maisProx = s;
             }
+          });
 
+          if (maisProx) {
+            // Mostrar popup informando o salão encontrado
+            document.getElementById("salaoEncontradoNome").textContent = 
+              `Salão mais próximo encontrado: ${maisProx.nome}\nDistância aproximada: ${menorDist.toFixed(2)} km`;
+            document.getElementById("popupSalaoEncontrado").style.display = "flex";
+            
+            // Piscar em verde o salão encontrado (5 vezes)
+            const el = document.getElementById(maisProx.id);
+            el.classList.add("piscando-verde");
+            
+            // Scroll para o elemento
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Remover animação após 2.5 segundos (5 piscadas)
+            setTimeout(() => {
+              el.classList.remove("piscando-verde");
+            }, 2500);
           } else {
-            alert("CEP não encontrado ou erro na busca. Tente novamente.");
+            alert("Nenhum salão encontrado próximo a esta localização.");
           }
-        });
 
-<<<<<<< HEAD
+        } else {
+          alert("CEP não encontrado ou erro na busca. Tente novamente.");
+        }
+
       } catch (error) {
         console.error("Erro ao buscar CEP:", error);
         alert("Erro ao buscar CEP. Tente novamente.");
-=======
-        if (maisProx) {
-          // Mostrar popup informando o salão encontrado
-          document.getElementById("salaoEncontradoNome").textContent = 
-            `Salão mais próximo encontrado: ${maisProx.nome}\nDistância aproximada: ${menorDist.toFixed(2)} km`;
-          document.getElementById("popupSalaoEncontrado").style.display = "flex";
-
-          // Piscar em verde o salão encontrado
-          const el = document.getElementById(maisProx.id);
-          el.classList.add("piscando-verde");
-
-          // Scroll para o elemento
-          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-          // Remover animação após 5 segundos
-          setTimeout(() => {
-            el.classList.remove("piscando-verde");
-          }, 5000);
-        } else {
-          alert("Nenhum salão encontrado próximo a esta localização.");
-        }
-
-      } else {
-        alert("CEP não encontrado ou erro na busca. Tente novamente.");
->>>>>>> a2e8010ee3a20d951269695425f827a1ffa01188
       }
     }
 
-<<<<<<< HEAD
     // Função para buscar salões por nome
     function buscarPorNome() {
       const nomeSalao = document.getElementById("nomeSalao").value.trim().toLowerCase();
       
       if (nomeSalao === "") {
         alert("Por favor, digite o nome de um salão para buscar.");
-=======
-  } catch (error) {
-    console.error("Erro ao buscar CEP:", error);
-    alert("Erro ao buscar CEP. Tente novamente.");
-  }
-}
-
-    // Função para buscar salões por nome da rua
-    function buscarPorRua() {
-      const nomeRua = document.getElementById("nomeRua").value.trim().toLowerCase();
-
-      if (nomeRua === "") {
-        alert("Por favor, digite o nome de uma rua para buscar.");
->>>>>>> a2e8010ee3a20d951269695425f827a1ffa01188
         return;
       }
 
@@ -487,20 +458,15 @@
         document.getElementById("salaoEncontradoNome").textContent = 
           `Encontramos ${saloesEncontrados.length} salão(ões) com o nome pesquisado: ${nomesSaloes}`;
         document.getElementById("popupSalaoEncontrado").style.display = "flex";
-<<<<<<< HEAD
         
         // Piscar em verde os salões encontrados (5 vezes)
-=======
-
-        // Piscar em verde os salões encontrados
->>>>>>> a2e8010ee3a20d951269695425f827a1ffa01188
         saloesEncontrados.forEach(salao => {
           const el = document.getElementById(salao.id);
           if (el) {
             el.classList.add("piscando-verde");
           }
         });
-
+        
         // Scroll para o primeiro elemento encontrado
         if (saloesEncontrados.length > 0) {
           const primeiroElemento = document.getElementById(saloesEncontrados[0].id);
@@ -508,13 +474,8 @@
             primeiroElemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
         }
-<<<<<<< HEAD
         
         // Remover animação após 2.5 segundos (5 piscadas)
-=======
-
-        // Remover animação após 5 segundos
->>>>>>> a2e8010ee3a20d951269695425f827a1ffa01188
         setTimeout(() => {
           saloesEncontrados.forEach(salao => {
             const el = document.getElementById(salao.id);
@@ -533,12 +494,11 @@
       const input = document.getElementById("nomeSalao");
       const sugestoes = document.getElementById("suggestions");
       const valor = input.value.trim().toLowerCase();
-
+      
       if (valor.length < 2) {
         sugestoes.style.display = "none";
         return;
       }
-<<<<<<< HEAD
       
       // Filtrar salões que correspondem ao input
       const saloesFiltrados = saloes.filter(salao => 
@@ -548,25 +508,6 @@
       if (saloesFiltrados.length > 0) {
         sugestoes.innerHTML = saloesFiltrados.map(salao => 
           `<div class="suggestion-item" onclick="selecionarSugestaoNome('${salao.nome}')">${salao.nome}</div>`
-=======
-
-      // Extrair nomes únicos de ruas dos salões
-      const ruasUnicas = [...new Set(saloes.map(salao => {
-        const endereco = salao.endereco;
-        // Extrair o nome da rua (parte antes do número)
-        const match = endereco.match(/^(Rua|R\.|Av\.|Avenida|Travessa|Praça)\s+([^,0-9]+)/i);
-        return match ? match[0] : null;
-      }).filter(rua => rua !== null))];
-
-      // Filtrar ruas que correspondem ao input
-      const ruasFiltradas = ruasUnicas.filter(rua => 
-        rua.toLowerCase().includes(valor)
-      );
-
-      if (ruasFiltradas.length > 0) {
-        sugestoes.innerHTML = ruasFiltradas.map(rua => 
-          `<div class="suggestion-item" onclick="selecionarSugestao('${rua}')">${rua}</div>`
->>>>>>> a2e8010ee3a20d951269695425f827a1ffa01188
         ).join('');
         sugestoes.style.display = "block";
       } else {

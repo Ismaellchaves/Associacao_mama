@@ -6,7 +6,9 @@
   <title>Salões Parceiros - MAMA</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="icon" href="assets/favo.ico" type="image/png" />
-    <link rel="stylesheet" href="scss/parceiros.css">
+
+  <link rel="stylesheet" href="scss/parceiros.css" />
+
 
 </head>
 <body>
@@ -58,14 +60,14 @@
   </div>
 
   <!-- Popup Busca -->
-  <div id="popupBusca">
+  <div id="popupBusca" class="popup">
     <div class="box">
       <h3>🔍 Encontrar Salão Mais Próximo</h3>
       <p>Escolha como deseja buscar:</p>
       
       <div class="search-tabs">
         <button class="search-tab active" onclick="mudarAba('cep')">Por CEP</button>
-        <button class="search-tab" onclick="mudarAba('rua')">Por Nome da Rua</button>
+        <button class="search-tab" onclick="mudarAba('nome')">Por Nome do Salão</button>
       </div>
       
       <!-- Conteúdo da aba CEP -->
@@ -78,13 +80,13 @@
         </div>
       </div>
       
-      <!-- Conteúdo da aba Rua -->
-      <div id="rua-content" class="search-content">
-        <p>Digite o nome da rua para encontrar salões parceiros nessa localização:</p>
-        <input type="text" id="nomeRua" placeholder="Ex: São José, Clóvis Beviláqua, etc.">
+      <!-- Conteúdo da aba Nome do Salão -->
+      <div id="nome-content" class="search-content">
+        <p>Digite o nome do salão para buscar:</p>
+        <input type="text" id="nomeSalao" placeholder="Ex: SALÃO VERAS, LIKA CABELEIREIROS, etc.">
         <div class="suggestions" id="suggestions"></div>
         <div class="buttons">
-          <button onclick="buscarPorRua()">Buscar Salões</button>
+          <button onclick="buscarPorNome()">Buscar Salões</button>
           <button class="secondary" onclick="fecharPopupBusca()">Fechar</button>
         </div>
       </div>
@@ -92,7 +94,7 @@
   </div>
 
   <!-- Popup Salão Encontrado -->
-  <div id="popupSalaoEncontrado">
+  <div id="popupSalaoEncontrado" class="popup">
     <div class="box">
       <h3>🎉 Salões Encontrados!</h3>
       <p id="salaoEncontradoNome"></p>
@@ -100,32 +102,31 @@
     </div>
   </div>
 
-<footer>
+  <footer>
     <section class="social-icons">
-        <!-- Instagram da Campanha Outubro Rosa -->
-        <a href="https://www.instagram.com/associacaomama" target="_blank" title="Instagram Oficial Outubro Rosa">
-            <img src="./assets/insta.png" alt="Instagram Outubro Rosa">
-        </a>
+      <!-- Instagram da Campanha Outubro Rosa -->
+      <a href="https://www.instagram.com/associacaomama" target="_blank" title="Instagram Oficial Outubro Rosa">
+        <img src="./assets/insta.png" alt="Instagram Outubro Rosa">
+      </a>
     </section>
     
     <section class="about-us">
-        <p class="campaign-text">Juntas na prevenção! 💖</p>
-        <p class="campaign-text">Visite o Site do nosso desenvolvedor logo abaixo⬇️</p>
-        <!-- Link para o site dos desenvolvedores -->
-        <div class="dev-link">
-            <a href="https://isnex.netlify.app" target="_blank" class="dev-website">
-                💻 ISNEX
-            </a>
-        </div>
+      <p class="campaign-text">Juntas na prevenção! 💖</p>
+      <p class="campaign-text">Visite o Site do nosso desenvolvedor logo abaixo⬇️</p>
+      <!-- Link para o site dos desenvolvedores -->
+      <div class="dev-link">
+        <a href="https://isnex.netlify.app" target="_blank" class="dev-website">
+          💻 ISNEX
+        </a>
+      </div>
     </section>
     
     <section class="logo-footer">
-        <img src="./assets/fita.png" alt="laço do Outubro Rosa">
+      <img src="./assets/fita.png" alt="laço do Outubro Rosa">
     </section>
-</footer>
+  </footer>
 
-
- <!-- Script da API Google Maps -->
+  <!-- Script da API Google Maps -->
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAip-QesZTgTNaIZ21zKK4cv9GspTQA6p0&callback=initMap"
     defer
@@ -142,8 +143,7 @@
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
 
-  <script src="script/parceiros.js"></script>
+      <script src="script/parceiros.js"></script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAip-QesZTgTNaIZ21zKK4cv9GspTQA6p0&callback=renderizarSaloes" async defer></script>
 </body>
 </html>

@@ -1,303 +1,318 @@
-const saloes = [
-  {
-    id: "s1",
-    nome: "SALÃO VERAS",
-    endereco: "Rua São José, 500 – Bairro São José, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1701172,-40.6775788",
-    instagram: "",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s2",
-    nome: "LIKA CABELEIREIROS",
-    endereco: "Rua Clóvis Beviláqua, 1448 - Bairro Ipase/São Vicente, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1851038,-40.6718919",
-    instagram: "https://www.instagram.com/lika.beautycenter?igsh=eHRxZnh4cjdjd3U4",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s3",
-    nome: "REALCY CABELEIREIROS",
-    endereco: "Rua Dr Gomes Coutinho, 609 - Bairro São Vicente, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.178927,-40.6676274",
-    instagram: "https://www.instagram.com/realcycabeleireiros?igsh=dGNzODlmOGtkeXpw",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s4",
-    nome: "IONETE CABELEIREIROS",
-    endereco: "Rua Dom Pedro II, 1234 - Bairro São Vicente, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.182568,-40.6726161",
-    instagram: "https://www.instagram.com/realcycabeleireiros?igsh=dGNzODlmOGtkeXpw",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s5",
-    nome: "K´BELLUS STUDIO",
-    endereco: "Rua Marechal Hermes, 103 - Bairro São Vicente, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1761051,-40.6653244",
-    instagram: "",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s6",
-    nome: "JONAS MAKE",
-    endereco: "R. José Sabóia livreiro, 1495 - Crateús, CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1770446,-40.6834239",
-    instagram: "https://www.instagram.com/jonas.beauty?igsh=MWw5MHp6NTBpdXNwcQ==",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s7",
-    nome: "SALÃO NOVO VISUAL",
-    endereco: "Rua São José, 454 – Bairro São José, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1703099,-40.6776065",
-    instagram: "",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s8",
-    nome: "SALÃO DE BELEZA E ESTÉTICA JOANA D´ARC",
-    endereco: "Rua Dr José Coriolano, 92 – Bairro Centro, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1733956,-40.6707684",
-    instagram: "https://www.instagram.com/joanadarcbelezaeestetica?igsh=MWh0cjJ2NWczdGhvdg==",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s9",
-    nome: "MARIA DO CARMO - ATELIÊ DE BELEZA",
-    endereco: "Rua Chico Ribeiro, 552 – Bairro Fátima II, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1874379,-40.668582",
-    instagram: "https://www.instagram.com/mariadocarmo_ateliedebeleza?igsh=MTViaHdpamJ0eG9uMQ==",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s10",
-    nome: "GILZA CABELEIREIRA",
-    endereco: "Rua Poty, 1084 - Bairro Centro, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1731939,-40.670419",
-    instagram: "https://www.instagram.com/gilza_franca?igsh=MTU0anh0dmFjOHFpMg==",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s11",
-    nome: "STUDIO D'ELLAS BELEZA E ESTÉTICA",
-    endereco: "Rua Dr Moura Fe, 929 - Bairro São Vicente, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1814619,-40.6711867",
-    instagram: "https://www.instagram.com/studio.dellas.belezaeestetica?igsh=MW9yYjI5NzVqNXQ0cA==",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s12",
-    nome: "SANDRA CABELEIREIRA",
-    endereco: "Rua Coronel Lúcio, 138 - Bairro Centro, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1737271,-40.6683816",
-    instagram: "",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s13",
-    nome: "FABIANA CABELEIREIRA",
-    endereco: "Rua Renato Braga, 1321 - Bairro Fátima II, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1840877,-40.6765889",
-    instagram: "",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s14",
-    nome: "Cantinho Da Jô",
-    endereco: "Residencial Dom Fragoso - R. LUIS FERREIRA DO NASCIMENTO, 1052 Q20 L09 - Cidade 2000, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1555831,-40.660307",
-    instagram: "https://www.instagram.com/cantinhoo_jo?igsh=MWtzYzVtZ2YzNHBtZw==",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s15",
-    nome: "AMITES CABELEIREIRA MAQUIADORA",
-    endereco: "Rua Cazuza Rocha, 256 - Bairro Centro, Novo Oriente - CE",
-    cep: "63740-000",
-    localizacao: "https://maps.google.com/?q=-5.536292,-40.775267",
-    instagram: "https://www.instagram.com/amites_sampaio?igsh=MWttcmtha2tpczF3ZA==",
-    imagem: "./assets/logomama.jpg"
-  },
-  {
-    id: "s16",
-    nome: "DJANE MAURIA",
-    endereco: "Rua Abdias Veras, 815 - Bairro São Vicente, Crateús - CE",
-    cep: "63700-000",
-    localizacao: "https://maps.google.com/?q=-5.1810294,-40.670171",
-    instagram: "https://www.instagram.com/djane_mauriahair?igsh=aTFzemV0b3YyMnc4",
-    imagem: "./assets/logomama.jpg"
-  }
-];
-
-let mapa, marcador, salaoAtual;
-
-// Menu Hamburguer
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('navMenu');
-const overlay = document.getElementById('overlay');
-const body = document.body;
-
-hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-  overlay.classList.toggle('active');
-  body.classList.toggle('menu-open');
-});
-
-// Fechar menu ao clicar no overlay
-overlay.addEventListener('click', () => {
-  navMenu.classList.remove('active');
-  overlay.classList.remove('active');
-  body.classList.remove('menu-open');
-});
-
-// Fechar menu ao clicar em um link
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', () => {
-    navMenu.classList.remove('active');
-    overlay.classList.remove('active');
-    body.classList.remove('menu-open');
-  });
-});
-
-// Função para renderizar os salões
-function renderizarSaloes() {
-  const container = document.getElementById('saloes');
-  container.innerHTML = '';
-
-  saloes.forEach(salao => {
-    const salaoElement = document.createElement('div');
-    salaoElement.className = 'salao';
-    salaoElement.id = salao.id;
-    salaoElement.onclick = () => abrirPopup(salao);
-
-    salaoElement.innerHTML = `
-      <div class="salao-header">
-        <img src="${salao.imagem}" alt="${salao.nome}" class="thumb" onerror="this.src='https://via.placeholder.com/86x86/FFD9EC/FF69B4?text=MAMA'">
-        <div>
-          <h3>${salao.nome}</h3>
-          <p>CEP: ${salao.cep}</p>
-        </div>
-      </div>
-      <div class="card-footer">
-        <span class="foot-text">💇‍♀️ Clique para ver no mapa</span>
-      </div>
-    `;
-
-    container.appendChild(salaoElement);
-  });
-}
-
-// Função para abrir popup do mapa
-function abrirPopup(salao) {
-  salaoAtual = salao;
-  document.getElementById("popupNome").textContent = salao.nome;
-  document.getElementById("popupEndereco").textContent = salao.endereco;
-  document.getElementById("popupCep").textContent = `CEP: ${salao.cep}`;
-  
-  const instaLink = document.getElementById("popupInsta");
-  const mapsLink = document.getElementById("popupMaps");
-
-  if (salao.instagram) {
-    instaLink.href = salao.instagram;
-    instaLink.style.display = 'inline-block';
-  } else {
-    instaLink.style.display = 'none';
-  }
-
-  // Link para Google Maps usando a URL de localização
-  mapsLink.href = salao.localizacao;
-
-  document.getElementById("popup").style.display = "flex";
-
-  // Extrair coordenadas da URL para o mapa
-  const coordsMatch = salao.localizacao.match(/q=([-\d.]+),([-\d.]+)/);
-  if (coordsMatch) {
-    const local = { 
-      lat: parseFloat(coordsMatch[1]), 
-      lng: parseFloat(coordsMatch[2]) 
-    };
-
-    // Inicializar mapa
-    mapa = new google.maps.Map(document.getElementById("mapa"), {
-      zoom: 17,
-      center: local,
-      styles: [
-        {
-          featureType: "poi",
-          elementType: "labels",
-          stylers: [{ visibility: "off" }]
-        }
-      ]
-    });
-
-    // Adicionar marcador personalizado
-    marcador = new google.maps.Marker({
-      position: local,
-      map: mapa,
-      title: salao.nome,
-      icon: {
-          url: "assets/locmama.png",
-        scaledSize: new google.maps.Size(45, 45),
-        anchor: new google.maps.Point(22.5, 45)
+    const saloes = [
+      {
+        id: "s1",
+        nome: "SALÃO VERAS",
+        endereco: "Rua São José, 500 – Bairro São José, Crateús - CE",
+        lat: -5.1701172,
+        lng: -40.6775788,
+        instagram: "",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s2",
+        nome: "LIKA CABELEIREIROS ",
+        endereco: "Rua Clóvis Beviláqua, 1448 - Bairro Ipase/São Vicente, Crateús - CE",
+        lat: -5.1851038,
+        lng: -40.6718919,
+        instagram: "https://www.instagram.com/lika.beautycenter?igsh=eHRxZnh4cjdjd3U4",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s3",
+        nome: "REALCY CABELEIREIROS ",
+        endereco: "Rua Dr Gomes Coutinho, 609 - Bairro São Vicente, Crateús - CE",
+        lat: -5.178927,
+        lng: -40.6676274,
+        instagram: "https://www.instagram.com/realcycabeleireiros?igsh=dGNzODlmOGtkeXpw",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s4",
+        nome: "IONETE CABELEIREIROS ",
+        endereco: "Rua Dom Pedro II, 1234 - Bairro São Vicente, Crateús - CE",
+        lat: -5.182568,
+        lng: -40.6726161,
+        instagram: "https://www.instagram.com/realcycabeleireiros?igsh=dGNzODlmOGtkeXpw",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s5",
+        nome: "K´BELLUS STUDIO",
+        endereco: "Rua Marechal Hermes, 103 - Bairro São Vicente, Crateús - CE",
+        lat: -5.1761051,
+        lng: -40.6653244,
+        instagram: "",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s6",
+        nome: "JONAS MAKE ",
+        endereco: "R. José Sabóia livreiro, 1495 - Crateús,Ce",
+        lat: -5.1770446,
+        lng: -40.6834239,
+        instagram: "https://www.instagram.com/jonas.beauty?igsh=MWw5MHp6NTBpdXNwcQ==",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s7",
+        nome: "SALÃO NOVO VISUAL",
+        endereco: "Rua São José, 454 – Bairro São José, Crateús - CE",
+        lat: -5.1703099,
+        lng: -40.6776065,
+        instagram: "",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s8",
+        nome: "SALÃO DE BELEZA E ESTÉTICA JOANA D´ARC",
+        endereco: "Rua Dr José Coriolano, 92 – Bairro Centro, Crateús - CE",
+        lat: -5.1733956,
+        lng: -40.6707684,
+        instagram: "https://www.instagram.com/joanadarcbelezaeestetica?igsh=MWh0cjJ2NWczdGhvdg==",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s9",
+        nome: "MARIA DO CARMO - ATELIÊ DE BELEZA",
+        endereco: "Rua Chico Ribeiro, 552 – Bairro Fátima II, Crateús - CE",
+        lat: -5.1874379,
+        lng: -40.668582,
+        instagram: "https://www.instagram.com/mariadocarmo_ateliedebeleza?igsh=MTViaHdpamJ0eG9uMQ==",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s10",
+        nome: "GILZA CABELEIREIRA",
+        endereco: "Rua Poty, 1084 - Bairro Centro, Crateús - CE",
+        lat: -5.1731939,
+        lng: -40.670419,
+        instagram: "https://www.instagram.com/gilza_franca?igsh=MTU0anh0dmFjOHFpMg==",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s11",
+        nome: "STUDIO D'ELLAS BELEZA E ESTÉTICA",
+        endereco: "Rua Dr Moura Fe, 929 - Bairro São Vicente, Crateús - CE",
+        lat: -5.1814619,
+        lng: -40.6711867,
+        instagram: "https://www.instagram.com/studio.dellas.belezaeestetica?igsh=MW9yYjI5NzVqNXQ0cA==",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s12",
+        nome: "SANDRA CABELEIREIRA",
+        endereco: "Rua Coronel Lúcio, 138 - Bairro Centro, Crateús - CE",
+        lat: -5.1737271,
+        lng: -40.6683816,
+        instagram: "",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s13",
+        nome: "FABIANA CABELEIREIRA",
+        endereco: "Rua Renato Braga, 1321 - Bairro Fátima II, Crateús - CE",
+        lat: -5.1840877,
+        lng: -40.6765889,
+        instagram: "",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s14",
+        nome: "Cantinho Da Jô",
+        endereco: "Residencial Dom Fragoso - R. LUIS FERREIRA DO NASCIMENTO, 1052 Q20 L09 - Cidade 2000, Crateús - CE",
+        lat: -5.1555831,
+        lng: -40.660307,
+        instagram: "https://www.instagram.com/cantinhoo_jo?igsh=MWtzYzVtZ2YzNHBtZw==",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s15",
+        nome: "AMITES CABELEIREIRA MAQUIADORA",
+        endereco: "Rua Cazuza Rocha, 256 - Bairro Centro, Novo Oriente - CE",
+        lat: -5.536292,
+        lng: -40.775267,
+        instagram: "https://www.instagram.com/amites_sampaio?igsh=MWttcmtha2tpczF3ZA==",
+        imagem: "./assets/logomama.jpg"
+      },
+      {
+        id: "s16",
+        nome: "DJANE MAURIA",
+        endereco: "Rua Abdias Veras, 815 - Bairro São Vicente, Crateús - CE",
+        lat: -5.1810294,
+        lng: -40.670171,
+        instagram: "https://www.instagram.com/djane_mauriahair?igsh=aTFzemV0b3YyMnc4",
+        imagem: "./assets/logomama.jpg"
       }
+    ];
+
+    let mapa, marcador, salaoAtual;
+
+    // Menu Hamburguer
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const overlay = document.getElementById('overlay');
+    const body = document.body;
+
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('menu-open');
     });
 
-    // InfoWindow com informações do salão
-    const infoWindow = new google.maps.InfoWindow({
-      content: `
-        <div style="padding: 10px;">
-          <h3 style="margin: 0 0 5px 0; color: #FF69B4;">${salao.nome}</h3>
-          <p style="margin: 0; font-size: 14px;">${salao.endereco}</p>
-          <a href="${salao.localizacao}" target="_blank" style="color: #4285F4; text-decoration: none; font-size: 12px; margin-top: 5px; display: block;">Abrir no Google Maps</a>
-        </div>
-      `
+    // Fechar menu ao clicar no overlay
+    overlay.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+      overlay.classList.remove('active');
+      body.classList.remove('menu-open');
     });
 
-    marcador.addListener('click', () => {
-      infoWindow.open(mapa, marcador);
+    // Fechar menu ao clicar em um link
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        body.classList.remove('menu-open');
+      });
     });
-  }
-}
 
-// Função para fechar popup do mapa
-function fecharPopup() {
-  document.getElementById("popup").style.display = "none";
-}
+    // Função para renderizar os salões
+    function renderizarSaloes() {
+      const container = document.getElementById('saloes');
+      container.innerHTML = '';
 
-// Função para abrir popup de busca
-function abrirPopupBusca() {
-  document.getElementById("popupBusca").style.display = "flex";
-  document.getElementById("cep").focus();
-}
+      saloes.forEach(salao => {
+        const salaoElement = document.createElement('div');
+        salaoElement.className = 'salao';
+        salaoElement.id = salao.id;
+        salaoElement.onclick = () => abrirPopup(salao);
 
-// Função para fechar popup de busca
-function fecharPopupBusca() {
-  document.getElementById("popupBusca").style.display = "none";
-  document.getElementById("suggestions").style.display = "none";
-}
+        // REMOVIDO: O quadrado do Instagram dos cards dos salões
+        salaoElement.innerHTML = `
+          <div class="salao-header">
+            <img src="${salao.imagem}" alt="${salao.nome}" class="thumb" onerror="this.src='https://via.placeholder.com/86x86/FFD9EC/FF69B4?text=MAMA'">
+            <div>
+              <h3>${salao.nome}</h3>
+              <p>${salao.endereco}</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span class="foot-text">💇‍♀️ Clique para ver no mapa</span>
+          </div>
+        `;
 
-// REMOVIDA: Função mudarAba e todo o conteúdo relacionado a busca por rua
+        container.appendChild(salaoElement);
+      });
+    }
 
-// Função para fechar popup salão encontrado
-function fecharPopupSalaoEncontrado() {
-  document.getElementById("popupSalaoEncontrado").style.display = "none";
-}
+    // Função para abrir popup do mapa
+    function abrirPopup(salao) {
+      salaoAtual = salao;
+      document.getElementById("popupNome").textContent = salao.nome;
+      const instaLink = document.getElementById("popupInsta");
+      const mapsLink = document.getElementById("popupMaps");
+
+      if (salao.instagram) {
+        instaLink.href = salao.instagram;
+        instaLink.style.display = 'inline-block';
+      } else {
+        instaLink.style.display = 'none';
+      }
+
+      // Link para Google Maps
+      const mapsUrl = `https://www.google.com/maps?q=${salao.lat},${salao.lng}&z=17`;
+      mapsLink.href = mapsUrl;
+
+      document.getElementById("popup").style.display = "flex";
+
+      const local = { lat: salao.lat, lng: salao.lng };
+
+      // Inicializar mapa
+      mapa = new google.maps.Map(document.getElementById("mapa"), {
+        zoom: 17,
+        center: local,
+        styles: [
+          {
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [{ visibility: "off" }]
+          }
+        ]
+      });
+
+      // Adicionar marcador personalizado
+      marcador = new google.maps.Marker({
+        position: local,
+        map: mapa,
+        title: salao.nome,
+        icon: {
+            url: "assets/locmama.png",
+          scaledSize: new google.maps.Size(45, 45),
+          anchor: new google.maps.Point(22.5, 45)
+        }
+      });
+
+      // InfoWindow com informações do salão
+      const infoWindow = new google.maps.InfoWindow({
+        content: `
+          <div style="padding: 10px;">
+            <h3 style="margin: 0 0 5px 0; color: #FF69B4;">${salao.nome}</h3>
+            <p style="margin: 0; font-size: 14px;">${salao.endereco}</p>
+            <a href="${mapsUrl}" target="_blank" style="color: #4285F4; text-decoration: none; font-size: 12px; margin-top: 5px; display: block;">Abrir no Google Maps</a>
+          </div>
+        `
+      });
+
+      marcador.addListener('click', () => {
+        infoWindow.open(mapa, marcador);
+      });
+    }
+
+    // Função para fechar popup do mapa
+    function fecharPopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    // Função para abrir popup de busca
+    function abrirPopupBusca() {
+      document.getElementById("popupBusca").style.display = "flex";
+      document.getElementById("cep").focus();
+    }
+
+    // Função para fechar popup de busca
+    function fecharPopupBusca() {
+      document.getElementById("popupBusca").style.display = "none";
+      document.getElementById("suggestions").style.display = "none";
+    }
+
+    // Função para mudar entre abas
+    function mudarAba(aba) {
+      // Atualizar tabs
+      document.querySelectorAll('.search-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelector(`.search-tab[onclick="mudarAba('${aba}')"]`).classList.add('active');
+
+      // Atualizar conteúdo
+      document.querySelectorAll('.search-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(`${aba}-content`).classList.add('active');
+
+      // Limpar sugestões
+      document.getElementById("suggestions").style.display = "none";
+
+      // Focar no campo correto
+      if (aba === 'cep') {
+        document.getElementById("cep").focus();
+      } else {
+        document.getElementById("nomeRua").focus();
+      }
+    }
+
+    // Função para fechar popup salão encontrado
+    function fecharPopupSalaoEncontrado() {
+      document.getElementById("popupSalaoEncontrado").style.display = "none";
+    }
 
 // Função para buscar salões por CEP
 async function buscarPorCep() {
@@ -325,27 +340,20 @@ async function buscarPorCep() {
         let menorDist = Infinity;
 
         saloes.forEach(s => {
-          // Extrair coordenadas da URL de localização
-          const coordsMatch = s.localizacao.match(/q=([-\d.]+),([-\d.]+)/);
-          if (coordsMatch) {
-            const salaoLat = parseFloat(coordsMatch[1]);
-            const salaoLng = parseFloat(coordsMatch[2]);
-            
-            // Fórmula de Haversine para calcular distância em linha reta
-            const R = 6371; // Raio da Terra em km
-            const dLat = (salaoLat - userLat) * Math.PI / 180;
-            const dLng = (salaoLng - userLng) * Math.PI / 180;
-            const a = 
-              Math.sin(dLat/2) * Math.sin(dLat/2) +
-              Math.cos(userLat * Math.PI / 180) * Math.cos(salaoLat * Math.PI / 180) * 
-              Math.sin(dLng/2) * Math.sin(dLng/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-            const distancia = R * c; // Distância em km
+          // Fórmula de Haversine para calcular distância em linha reta
+          const R = 6371; // Raio da Terra em km
+          const dLat = (s.lat - userLat) * Math.PI / 180;
+          const dLng = (s.lng - userLng) * Math.PI / 180;
+          const a = 
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(userLat * Math.PI / 180) * Math.cos(s.lat * Math.PI / 180) * 
+            Math.sin(dLng/2) * Math.sin(dLng/2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+          const distancia = R * c; // Distância em km
 
-            if (distancia < menorDist) {
-              menorDist = distancia;
-              maisProx = s;
-            }
+          if (distancia < menorDist) {
+            menorDist = distancia;
+            maisProx = s;
           }
         });
 
@@ -381,55 +389,148 @@ async function buscarPorCep() {
   }
 }
 
-// REMOVIDAS: Funções buscarPorRua, mostrarSugestoesRua, selecionarSugestao
+    // Função para buscar salões por nome da rua
+    function buscarPorRua() {
+      const nomeRua = document.getElementById("nomeRua").value.trim().toLowerCase();
 
-// Formatar CEP
-document.getElementById('cep').addEventListener('input', function(e) {
-  let value = e.target.value.replace(/\D/g, '');
-  if (value.length > 5) {
-    value = value.substring(0,5) + '-' + value.substring(5,8);
-  }
-  e.target.value = value;
-});
+      if (nomeRua === "") {
+        alert("Por favor, digite o nome de uma rua para buscar.");
+        return;
+      }
 
-// REMOVIDO: Event listener para autocomplete de rua
+      // Fechar popup de busca
+      document.getElementById("popupBusca").style.display = "none";
 
-// Inicializar
-window.onload = () => {
-  renderizarSaloes();
-  // Mostrar popup de busca automaticamente
-  setTimeout(() => {
-    document.getElementById("popupBusca").style.display = "flex";
-  }, 1000);
-}
+      // Buscar salões que contenham o nome da rua no endereço
+      const saloesEncontrados = saloes.filter(salao => 
+        salao.endereco.toLowerCase().includes(nomeRua)
+      );
 
-// Fechar popup ao clicar fora
-document.getElementById('popup').addEventListener('click', function(e) {
-  if (e.target === this) {
-    fecharPopup();
-  }
-});
+      if (saloesEncontrados.length > 0) {
+        // Mostrar popup informando os salões encontrados
+        const nomesSaloes = saloesEncontrados.map(s => s.nome).join(", ");
+        document.getElementById("salaoEncontradoNome").textContent = 
+          `Encontramos ${saloesEncontrados.length} salão(ões) na rua pesquisada: ${nomesSaloes}`;
+        document.getElementById("popupSalaoEncontrado").style.display = "flex";
 
-document.getElementById('popupBusca').addEventListener('click', function(e) {
-  if (e.target === this) {
-    fecharPopupBusca();
-  }
-});
+        // Piscar em verde os salões encontrados
+        saloesEncontrados.forEach(salao => {
+          const el = document.getElementById(salao.id);
+          if (el) {
+            el.classList.add("piscando-verde");
+          }
+        });
 
-document.getElementById('popupSalaoEncontrado').addEventListener('click', function(e) {
-  if (e.target === this) {
-    fecharPopupSalaoEncontrado();
-  }
-});
+        // Scroll para o primeiro elemento encontrado
+        if (saloesEncontrados.length > 0) {
+          const primeiroElemento = document.getElementById(saloesEncontrados[0].id);
+          if (primeiroElemento) {
+            primeiroElemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
 
-// Fechar com ESC
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') {
-    fecharPopup();
-    fecharPopupBusca();
-    fecharPopupSalaoEncontrado();
-    navMenu.classList.remove('active');
-    overlay.classList.remove('active');
-    body.classList.remove('menu-open');
-  }
-});
+        // Remover animação após 5 segundos
+        setTimeout(() => {
+          saloesEncontrados.forEach(salao => {
+            const el = document.getElementById(salao.id);
+            if (el) {
+              el.classList.remove("piscando-verde");
+            }
+          });
+        }, 5000);
+      } else {
+        alert("Nenhum salão encontrado nessa rua. Tente outro nome de rua.");
+      }
+    }
+
+    // Função para mostrar sugestões de ruas
+    function mostrarSugestoesRua() {
+      const input = document.getElementById("nomeRua");
+      const sugestoes = document.getElementById("suggestions");
+      const valor = input.value.trim().toLowerCase();
+
+      if (valor.length < 2) {
+        sugestoes.style.display = "none";
+        return;
+      }
+
+      // Extrair nomes únicos de ruas dos salões
+      const ruasUnicas = [...new Set(saloes.map(salao => {
+        const endereco = salao.endereco;
+        // Extrair o nome da rua (parte antes do número)
+        const match = endereco.match(/^(Rua|R\.|Av\.|Avenida|Travessa|Praça)\s+([^,0-9]+)/i);
+        return match ? match[0] : null;
+      }).filter(rua => rua !== null))];
+
+      // Filtrar ruas que correspondem ao input
+      const ruasFiltradas = ruasUnicas.filter(rua => 
+        rua.toLowerCase().includes(valor)
+      );
+
+      if (ruasFiltradas.length > 0) {
+        sugestoes.innerHTML = ruasFiltradas.map(rua => 
+          `<div class="suggestion-item" onclick="selecionarSugestao('${rua}')">${rua}</div>`
+        ).join('');
+        sugestoes.style.display = "block";
+      } else {
+        sugestoes.style.display = "none";
+      }
+    }
+
+    // Função para selecionar uma sugestão
+    function selecionarSugestao(rua) {
+      document.getElementById("nomeRua").value = rua;
+      document.getElementById("suggestions").style.display = "none";
+    }
+
+    // Formatar CEP
+    document.getElementById('cep').addEventListener('input', function(e) {
+      let value = e.target.value.replace(/\D/g, '');
+      if (value.length > 5) {
+        value = value.substring(0,5) + '-' + value.substring(5,8);
+      }
+      e.target.value = value;
+    });
+
+    // Event listener para autocomplete de rua
+    document.getElementById('nomeRua').addEventListener('input', mostrarSugestoesRua);
+
+    // Inicializar
+    window.onload = () => {
+      renderizarSaloes();
+      // Mostrar popup de busca automaticamente
+      setTimeout(() => {
+        document.getElementById("popupBusca").style.display = "flex";
+      }, 1000);
+    }
+
+    // Fechar popup ao clicar fora
+    document.getElementById('popup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        fecharPopup();
+      }
+    });
+
+    document.getElementById('popupBusca').addEventListener('click', function(e) {
+      if (e.target === this) {
+        fecharPopupBusca();
+      }
+    });
+
+    document.getElementById('popupSalaoEncontrado').addEventListener('click', function(e) {
+      if (e.target === this) {
+        fecharPopupSalaoEncontrado();
+      }
+    });
+
+    // Fechar com ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        fecharPopup();
+        fecharPopupBusca();
+        fecharPopupSalaoEncontrado();
+        navMenu.classList.remove('active');
+        overlay.classList.remove('active');
+        body.classList.remove('menu-open');
+      }
+    });

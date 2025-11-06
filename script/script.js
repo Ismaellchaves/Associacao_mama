@@ -62,3 +62,32 @@ window.addEventListener('resize', () => {
     }
 });
 
+
+//Script Do Mapa
+
+// Script do mapa
+function initMap() {
+  const mamaLocal = { lat: -5.17879, lng: -40.67798 }; // Coordenadas Crateús
+
+  const mapa = new google.maps.Map(document.getElementById("mapa"), {
+    zoom: 17,
+    center: mamaLocal,
+    mapId: "MAMA_MAP_ID",
+  });
+
+  // Ícone personalizado da MAMA
+  const marcadorPersonalizado = {
+    url: "assets/locmama.png", // Caminho da imagem (ajuste conforme seu projeto)
+    scaledSize: new google.maps.Size(70, 70), // Tamanho ajustável do ícone
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(35, 70), // Ponto de ancoragem (base do pino)
+  };
+
+  // Marcador com o ícone rosa da MAMA
+  new google.maps.Marker({
+    position: mamaLocal,
+    map: mapa,
+    title: "MAMA - Associação Mulheres Amadas Mulheres Assistidas",
+    icon: marcadorPersonalizado,
+  });
+}

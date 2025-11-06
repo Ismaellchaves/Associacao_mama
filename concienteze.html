@@ -14,15 +14,16 @@
 
     <header>
         <div class="logo">
-            <img src="./assets/mama0.png" alt="MAMA">
+            <img src="./assets/logomama.jpg" alt="MAMA">
             <h1>MAMA</h1>
         </div>
         <div class="hamburger" id="hamburger">&#9776;</div>
         <nav id="nav">
             <ul id="navMenu">
                 <li><a href="index.html">MAMA</a></li>
-                <li><a href="concienteze.html" class="active">Conscientização / Doe</a></li>
                 <li><a href="dicas.html">Dicas</a></li>
+                <li><a href="parceiros.html">Salões Parceiros / Ponto de Coleta</a></li>
+            </ul>
             </ul>
         </nav>
     </header>
@@ -37,8 +38,8 @@
             <label><input type="radio" name="donType" value="alimento" checked /> Doação de Alimentos</label>
             <label><input type="radio" name="donType" value="cabelo" /> Doação de Cabelo</label>
             <label><input type="radio" name="donType" value="dinheiro" /> Doação em Dinheiro (PIX/Transferência)</label>
-            <label><input class="dev-link" href="https://suanotatemvalor.sefaz.ce.gov.br/app/#/services/usuario/cadastro" />Sua nota tem valor</label>
-        </section>
+            <label><input type="radio" name="donType" id="notaValor" /><span>Sua Nota Tem Valor</span></label> 
+     </section>
 
         <section id="alimentoSection" class="panel">
             <h3>Escolha os alimentos (clique para adicionar quantidade)</h3>
@@ -84,7 +85,7 @@
             
   <!-- Seção de comprovante desativada -->
             <div class="receipt-section">
-                <h4>Envio de comprovante (desativado)</h4>
+                <h4>Envio de comprovante</h4>
                 <div class="upload-area disabled">
                     <div class="upload-content">
                         <span class="upload-icon">📎</span>
@@ -111,10 +112,7 @@
             <img src="./assets/insta.png" alt="Instagram Outubro Rosa">
         </a>
         
-        <!-- Instagram dos Desenvolvedores (substitua pelo link real) -->
-        <a href="https://www.instagram.com/isnex.01" target="_blank" title="Instagram dos Desenvolvedores">
-            <img src="./assets/insta.png" alt="Instagram Desenvolvedores">
-        </a>
+
     </section>
     
     <section class="about-us">
@@ -141,6 +139,6 @@
     new window.VLibras.Widget('https://vlibras.gov.br/app');
 </script>
 
-<script src="scss/concienteze.js"></script>
+<script src="script/concienteze.js"></script>
 </body>
 </html>

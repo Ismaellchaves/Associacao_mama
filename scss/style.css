@@ -485,3 +485,152 @@ footer {
         padding: 8px 16px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+/* CSS do mapa */
+
+.localizacao {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.localizacao h2 {
+  color: #e91e63;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.localizacao p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+#mapa {
+  width: 90%;
+  height: 350px;
+  margin: 0 auto 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(233, 30, 99, 0.3);
+}
+
+/* Botão */
+.btn-google {
+  background-color: #e91e63;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-google:hover {
+  background-color: #ff4f8b;
+}
+
+/* Responsividade */
+@media (min-width: 768px) {
+  #mapa {
+    height: 400px;
+    width: 80%;
+  }
+}
+
+@media (min-width: 1024px) {
+  #mapa {
+    height: 450px;
+    width: 70%;
+  }
+}
+
+
+
+/* Botão quero ser um associado */
+
+.animated-button {
+    background: linear-gradient(45deg, #ff1493, #ff69b4, #ffb6c1);
+    background-size: 300% 300%;
+    border: none;
+    border-radius: 50px;
+    padding: 20px 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: gradientAnimation 3s ease infinite;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.animated-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 105, 180, 0.5);
+    animation-duration: 1.5s;
+}
+
+.animated-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+}
+
+.animated-button h1 {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.animated-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.animated-button:hover::before {
+    left: 100%;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Efeito de pulso adicional */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.animated-button:hover {
+    animation: gradientAnimation 1.5s ease infinite, pulse 2s ease-in-out infinite;
+}

@@ -140,3 +140,12 @@ function sendToWhatsApp(message){
 }
 
 document.addEventListener('DOMContentLoaded', ()=>{ console.log('Página de doações carregada com sucesso!'); });
+
+
+
+//Sua Nota Tem valor 
+document.getElementById('notaValor').addEventListener('change', function() {
+  if (this.checked) {
+    window.open('https://suanotatemvalor.sefaz.ce.gov.br/app/#/services/usuario/cadastro', '_blank');
+  }
+});

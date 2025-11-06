@@ -14,18 +14,15 @@
 
     <header>
         <div class="logo">
-            <img src="./assets/mama0.png" alt="MAMA">
+            <img src="./assets/logomama.jpg" alt="MAMA">
             <h1>MAMA</h1>
         </div>
         <div class="hamburger" id="hamburger">&#9776;</div>
         <nav id="nav">
             <ul id="navMenu">
-                <li><a href="#" class="active">MAMA</a></li>
                 <li><a href="concienteze.html">Conscientização / Doe</a></li>
                 <li><a href="dicas.html">Dicas</a></li>
                 <li><a href="parceiros.html">Salões Parceiros / Ponto de Coleta</a></li>
-                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScjBufR2mSuDQ8XGDXiSOGIi_wKNsrEsFIH3x5W_TqzyWVwig/viewform?usp=pp_url">Quero ser um associado</a></li>
-
             </ul>
         </nav>
     </header>
@@ -40,6 +37,11 @@
     Junte-se a nós na luta contra o câncer de mama! Cada gesto de apoio, cada doação e cada momento de conscientização faz a diferença na vida de mulheres que enfrentam essa batalha.
 </p>
 
+<div>
+    <button class="animated-button" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScjBufR2mSuDQ8XGDXiSOGIi_wKNsrEsFIH3x5W_TqzyWVwig/viewform?usp=pp_url', '_blank')">
+        <h1>Quero ser um associado</h1>
+    </button>
+</div>
         </section>
     <main>
         <!-- Carrossel no topo -->
@@ -92,17 +94,28 @@
 
 
 
+<!-- Seção de Localização -->
+ 
+        <section class="localizacao">
+          <h2>📍 Nossa Localização</h2>
+          <p>RUA DR JOSE CORIOLANO, 68 - CENTRO, Crateús - Ceará</p>
+          <div id="mapa" style="width: 100%; height: 400px; border-radius: 15px;"></div>
+           <a
+      class="btn-google"
+      href="https://www.google.com/maps/place/R.+Dr.+Jos%C3%A9+Coriolano,+68+-+Centro,+Crate%C3%BAs+-+CE"
+      target="_blank"
+      rel="noopener noreferrer">Ver no Google Maps</a>
+        </section>
+
+
+
 <footer>
     <section class="social-icons">
         <!-- Instagram da Campanha Outubro Rosa -->
         <a href="https://www.instagram.com/associacaomama" target="_blank" title="Instagram Oficial Outubro Rosa">
             <img src="./assets/insta.png" alt="Instagram Outubro Rosa">
         </a>
-        
-        <!-- Instagram dos Desenvolvedores (substitua pelo link real) -->
-        <a href="https://www.instagram.com/isnex.01" target="_blank" title="Instagram dos Desenvolvedores">
-            <img src="./assets/insta.png" alt="Instagram Desenvolvedores">
-        </a>
+
     </section>
     
     <section class="about-us">
@@ -122,6 +135,11 @@
 </footer>
 
 
+ <!-- Script da API Google Maps -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAip-QesZTgTNaIZ21zKK4cv9GspTQA6p0&callback=initMap"
+    defer
+  ></script>
 
   <div vw class="enabled">
     <div vw-access-button class="active"></div>
@@ -134,6 +152,6 @@
     new window.VLibras.Widget('https://vlibras.gov.br/app');
   </script>
 
-  <script src="scss/script.js"></script>
+  <script src="script/script.js"></script>
 </body>
 </html>

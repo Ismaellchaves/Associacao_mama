@@ -1,11 +1,149 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Salões Parceiros - MAMA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/favo.ico" type="image/png" />
+    <link rel="stylesheet" href="scss/parceiros.css">
+
 </head>
 <body>
+  <header>
+    <div class="header-left">
+      <img src="./assets/logomama.jpg" alt="MAMA" />
+      <h1>MAMA</h1>
+    </div>
     
+    <!-- Menu Hamburger -->
+    <div class="hamburger" id="hamburger">☰</div>
+    
+    <nav id="navMenu">
+      <ul>
+        <li><a href="index.html" class="active">MAMA</a></li>
+        <li><a href="concienteze.html">Conscientização / Doe</a></li>
+        <li><a href="dicas.html">Dicas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Overlay para fechar menu -->
+  <div class="overlay" id="overlay"></div>
+
+  <div class="main-wrap">
+    <div class="hero">
+      <h2>💇‍♀️ Salões Parceiros e Pontos de Coleta De Doação De Cabelos</h2>
+      <p>Clique em um salão para ver sua localização e Instagram. Abaixo estão todos os parceiros MAMA.</p>
+    </div>
+
+    <div class="salao-lista" id="saloes">
+      <!-- Salões serão inseridos aqui via JavaScript -->
+    </div>
+  </div>
+
+  <!-- Popup do Mapa -->
+  <div class="popup" id="popup">
+    <div class="box">
+      <button class="close-btn" onclick="fecharPopup()">×</button>
+      <header>
+        <h3 id="popupNome"></h3>
+      </header>
+      <div id="mapa" class="maparea"></div>
+      <div class="actions">
+        <a id="popupInsta" class="btn" target="_blank">Ver Instagram</a>
+        <a id="popupMaps" class="btn-maps" target="_blank">Abrir no Google Maps</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Busca -->
+  <div id="popupBusca">
+    <div class="box">
+      <h3>🔍 Encontrar Salão Mais Próximo</h3>
+      <p>Escolha como deseja buscar:</p>
+      
+      <div class="search-tabs">
+        <button class="search-tab active" onclick="mudarAba('cep')">Por CEP</button>
+        <button class="search-tab" onclick="mudarAba('rua')">Por Nome da Rua</button>
+      </div>
+      
+      <!-- Conteúdo da aba CEP -->
+      <div id="cep-content" class="search-content active">
+        <p>Digite seu CEP para encontrar o salão parceiro mais perto de você:</p>
+        <input type="text" id="cep" placeholder="Ex: 63700-000" maxlength="9">
+        <div class="buttons">
+          <button onclick="buscarPorCep()">Buscar Salão</button>
+          <button class="secondary" onclick="fecharPopupBusca()">Fechar</button>
+        </div>
+      </div>
+      
+      <!-- Conteúdo da aba Rua -->
+      <div id="rua-content" class="search-content">
+        <p>Digite o nome da rua para encontrar salões parceiros nessa localização:</p>
+        <input type="text" id="nomeRua" placeholder="Ex: São José, Clóvis Beviláqua, etc.">
+        <div class="suggestions" id="suggestions"></div>
+        <div class="buttons">
+          <button onclick="buscarPorRua()">Buscar Salões</button>
+          <button class="secondary" onclick="fecharPopupBusca()">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup Salão Encontrado -->
+  <div id="popupSalaoEncontrado">
+    <div class="box">
+      <h3>🎉 Salões Encontrados!</h3>
+      <p id="salaoEncontradoNome"></p>
+      <button onclick="fecharPopupSalaoEncontrado()">OK, Entendi</button>
+    </div>
+  </div>
+
+<footer>
+    <section class="social-icons">
+        <!-- Instagram da Campanha Outubro Rosa -->
+        <a href="https://www.instagram.com/associacaomama" target="_blank" title="Instagram Oficial Outubro Rosa">
+            <img src="./assets/insta.png" alt="Instagram Outubro Rosa">
+        </a>
+    </section>
+    
+    <section class="about-us">
+        <p class="campaign-text">Juntas na prevenção! 💖</p>
+        <p class="campaign-text">Visite o Site do nosso desenvolvedor logo abaixo⬇️</p>
+        <!-- Link para o site dos desenvolvedores -->
+        <div class="dev-link">
+            <a href="https://isnex.netlify.app" target="_blank" class="dev-website">
+                💻 ISNEX
+            </a>
+        </div>
+    </section>
+    
+    <section class="logo-footer">
+        <img src="./assets/fita.png" alt="laço do Outubro Rosa">
+    </section>
+</footer>
+
+
+ <!-- Script da API Google Maps -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAip-QesZTgTNaIZ21zKK4cv9GspTQA6p0&callback=initMap"
+    defer
+  ></script>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+
+  <script src="script/parceiros.js"></script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAip-QesZTgTNaIZ21zKK4cv9GspTQA6p0&callback=renderizarSaloes" async defer></script>
 </body>
 </html>
